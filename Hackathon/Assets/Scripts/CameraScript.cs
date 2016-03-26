@@ -7,12 +7,12 @@ public class CameraScript : MonoBehaviour {
 
 	void Awake()
 	{
-		cam = GetComponent<Camera>();
+		cam = Camera.main;
 	}
 
 	public void SetPosition(int size)
 	{
 		cam.orthographicSize = size;
-		transform.position = new Vector3(size, size / 2, -10);
+		cam.transform.position = new Vector3(size, size / 2, -10);
 	}
 }

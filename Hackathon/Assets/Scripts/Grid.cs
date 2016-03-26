@@ -46,6 +46,14 @@ public class Grid : MonoBehaviour {
 		}
 	}
 
+	public void resetSize(int size)
+	{
+		foreach (GameObject o in tileGrid)
+			Destroy(o);
+		this.size = size;
+		grid = new bool[size, size];
+	}
+
 	public void GenerateLevel(int focusLevel)
 	{
 		size = focusLevel;
