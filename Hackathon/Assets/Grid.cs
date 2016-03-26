@@ -64,7 +64,7 @@ public class Grid : MonoBehaviour {
 	}
 */
 		
-	public void updateColorGrid(int row, int col)
+	public void bool updateColorGrid(int row, int col)
 	{
 		grid [row, col] = !grid [row, col];
 	}
