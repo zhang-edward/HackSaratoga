@@ -16,8 +16,6 @@ public class Grid : MonoBehaviour {
 
 	void Start()
 	{
-		transform.position = new Vector3 (size / 2, size / 2, 0);
-
 		tileGrid = new GameObject[size, size];
 		Init ();
 		generator = new GridGenerator();
@@ -41,7 +39,7 @@ public class Grid : MonoBehaviour {
 				o.transform.position = new Vector2 (col, row);
 				p.transform.position = new Vector2 (col, row);
 				tileGrid[row, col] = o;
-				if (updateColorGrid) 
+				if (updateColorGrid()) 
 				{
 					
 					tileGrid[row, col] = p;
