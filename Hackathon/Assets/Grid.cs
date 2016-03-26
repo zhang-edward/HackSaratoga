@@ -12,6 +12,8 @@ public class Grid : MonoBehaviour {
 	public GameObject tile;
 	public GameObject tile2;
 
+	public bool levelComplete;
+
 	void Start()
 	{
 		transform.position = new Vector3 (size / 2, size / 2, 0);
@@ -21,7 +23,7 @@ public class Grid : MonoBehaviour {
 		generator = new GridGenerator();
 	}
 
-	void Update()
+	public void GenerateLevel(int focusLevel)
 	{
 		updateColorGrid();
 		if (Input.GetMouseButton (0)){
