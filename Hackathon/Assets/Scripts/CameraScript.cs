@@ -12,7 +12,7 @@ public class CameraScript : MonoBehaviour {
 
 	public void SetPosition(int size)
 	{
-		cam.orthographicSize = size + 1;
-		transform.position = new Vector3(size / 2, size / 2, -10);
+		cam.orthographicSize = size;
+		transform.position = new Vector3(size, size / 2, -10);
 	}
 }
