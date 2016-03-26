@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MyScript : MonoBehaviour {
+public class GameManager : MonoBehaviour {
 
-	private int a;
+	public Grid grid;
 
 	// Use this for initialization
-	void Start () {
-		a = 1;
+	void Awake () {
 	}
 	
 	// Update is called once per frame
