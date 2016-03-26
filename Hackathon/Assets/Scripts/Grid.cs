@@ -5,31 +5,47 @@ public class Grid : MonoBehaviour {
 
 	public int size;
 	public bool[,] grid;
+	public bool[,] template;
 	public GameObject[,] tileGrid;
 	//public bool isBlack;
 	private GridGenerator generator;
 
 	public GameObject tile;
-	public GameObject tile2;
 
 	public bool levelComplete;
 
 	void Start()
 	{
-		transform.position = new Vector3 (size / 2, size / 2, 0);
-
+		grid = new bool[size, size];
 		tileGrid = new GameObject[size, size];
 		Init ();
 		generator = new GridGenerator();
 	}
 
-	public void GenerateLevel(int focusLevel)
+	void Update()
 	{
-		updateColorGrid();
-		if (Input.GetMouseButton (0)){
-			//return position of mouse
+		if (Input.GetMouseButtonDown(0))
+		{
+			Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Debug.Log(mousePosition);
+			updateColorGrid(Mathf.RoundToInt(mousePosition.y), Mathf.RoundToInt(mousePosition.x));
 		}
 
+		for (int x = 0; x < size; x ++)
+		{
+			for (int y = 0; y < size; y ++)
+			{
+				if (grid[y, x])
+					tileGrid[y, x].GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f);
+				else
+					tileGrid[y, x].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+			}
+		}
+	}
+
+	public void GenerateLevel(int focusLevel)
+	{
+		size = focusLevel;
 	}
 
 	public void Init()
@@ -37,33 +53,12 @@ public class Grid : MonoBehaviour {
 		for (int row = 0; row < size; row++) {
 			for (int col = 0; col < size; col++) {
 				GameObject o = Instantiate (tile) as GameObject;
-				GameObject p = Instantiate (tile2) as GameObject;
 				o.transform.position = new Vector2 (col, row);
-				p.transform.position = new Vector2 (col, row);
 				tileGrid[row, col] = o;
-				if (updateColorGrid) 
-				{
-					
-					tileGrid[row, col] = p;
-				}
 			}
 		}
 	}
-
-/*
-	public void newGrid()
-	{
-		grid = new bool[size,size];
-		for (int row = 0; row < size; row++) 
-		{
-			for (int col = 0; col < size; col++) 
-			{
-				grid [row, col] = false;
-			}
-		}
-	}
-*/
-		
+	
 	public void updateColorGrid(int row, int col)
 	{
 		grid [row, col] = !grid [row, col];
