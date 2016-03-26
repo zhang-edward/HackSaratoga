@@ -41,7 +41,8 @@ public class Grid : MonoBehaviour {
 				o.transform.position = new Vector2 (col, row);
 				p.transform.position = new Vector2 (col, row);
 				tileGrid[row, col] = o;
-				if (updateColorGrid) {
+				if (updateColorGrid) 
+				{
 					
 					tileGrid[row, col] = p;
 				}
@@ -63,7 +64,7 @@ public class Grid : MonoBehaviour {
 	}
 */
 		
-	public void bool updateColorGrid(int row, int col)
+	public void updateColorGrid(int row, int col)
 	{
 		grid [row, col] = !grid [row, col];
 	}
