@@ -26,3 +26,4 @@ public class GameManager : MonoBehaviour {
 		grid.Init();
 	}
 }
+
