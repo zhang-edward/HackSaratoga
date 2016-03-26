@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance;
 
+	public float colorTimer;
 	public float timer;
 
 	public CameraScript cam;
@@ -57,6 +58,9 @@ public class GameManager : MonoBehaviour {
 			focusLevel = 2;
 		else if (timer >= 300)
 			SceneManager.LoadScene("GetBackToWork");
+
+		colorTimer += Time.deltaTime / 100.0f;
+		Camera.main.backgroundColor = Color.Lerp(new Color(.5f, .66f, .69f), new Color(.69f, .55f, .55f), colorTimer);
 	}
 
 	public void LoadNextLevel()
