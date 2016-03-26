@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+	public static GameManager instance;
+
 	public float timer;
 
 	public CameraScript cam;
@@ -13,10 +15,17 @@ public class GameManager : MonoBehaviour {
 
 	public bool GameSceneLoaded;
 
+	void Awake()
+	{
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy(this.gameObject);
+	}
+
 	void Start()
 	{
 		DontDestroyOnLoad(this.gameObject);
-		cam.SetPosition(grid.size);
 		LoadNextLevel();
 	}
 	
@@ -42,10 +51,12 @@ public class GameManager : MonoBehaviour {
 
 		if (timer >= 60 && timer <= 120)
 			focusLevel = 4;
-		if (timer >= 120 && timer <= 180)
+		else if (timer >= 120 && timer <= 180)
 			focusLevel = 3;
-		if (timer >= 180 && timer <= 240)
+		else if (timer >= 180 && timer <= 240)
 			focusLevel = 2;
+		else if (timer >= 300)
+			SceneManager.LoadScene("GetBackToWork");
 	}
 
 	public void LoadNextLevel()
@@ -54,7 +65,7 @@ public class GameManager : MonoBehaviour {
 			LoadLevel();
 		else
 		{
-			if (Random.value < 0.1f)
+			if (Random.value < 0.3f)
 			{
 				SceneManager.LoadScene(2);
 				Invoke("LoadRandomInkBlot", 2.0f);
@@ -80,7 +91,6 @@ public class GameManager : MonoBehaviour {
 
 	public void LoadLevel()
 	{
-		cam.SetPosition(focusLevel);
 		grid.resetSize(focusLevel);
 		template.resetSize(focusLevel);
 
@@ -100,6 +110,11 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 		return true;
+	}
+
+	public void IncreaseTimer()
+	{
+		timer += 30f;
 	}
 }
 

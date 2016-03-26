@@ -7,12 +7,17 @@ public class CameraScript : MonoBehaviour {
 
 	void Awake()
 	{
-		cam = Camera.main;
+		cam = GetComponent<Camera>();
 	}
 
-	public void SetPosition(int size)
+	void Update()
 	{
-		cam.orthographicSize = size;
-		cam.transform.position = new Vector3(size, size / 2, -10);
+		SetPosition();
+	}
+
+	public void SetPosition()
+	{
+		cam.orthographicSize = GameManager.instance.grid.size;
+		cam.transform.position = new Vector3(GameManager.instance.grid.size, GameManager.instance.grid.size / 2, -10);
 	}
 }
