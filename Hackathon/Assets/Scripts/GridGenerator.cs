@@ -9,6 +9,7 @@ public class GridGenerator {
 
 	public bool[,] GenerateLevel(int focusLevel, int size)
 	{
-		return null;
+		bool[,] answer = new bool[size, size];
+		return answer;
 	}
 }
